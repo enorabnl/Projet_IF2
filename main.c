@@ -1,6 +1,8 @@
+#include "projet.h"
+#include "menu.h"
+
 #include <stdio.h>
 #include<string.h>
-#include "projet.h"
 #include <stdlib.h>
 
 int main() {
@@ -8,7 +10,6 @@ int main() {
     int choix_menu_principal, choix_menu_scores;
     int dimension_grille;
     int duree;
-
     choix_menu_principal = menu_principal();
 
     switch (choix_menu_principal) {

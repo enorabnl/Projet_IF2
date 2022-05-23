@@ -61,6 +61,12 @@ build CMakeFiles/PROJET.dir/projet.c.obj: C_COMPILER__PROJET_Debug C$:/Users/eno
   OBJECT_DIR = CMakeFiles\PROJET.dir
   OBJECT_FILE_DIR = CMakeFiles\PROJET.dir
 
+build CMakeFiles/PROJET.dir/menu.c.obj: C_COMPILER__PROJET_Debug C$:/Users/enora/Documents/1$ UTBM/TC2/IF2/PROJET/Projet_IF2/menu.c || cmake_object_order_depends_target_PROJET
+  DEP_FILE = CMakeFiles\PROJET.dir\menu.c.obj.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles\PROJET.dir
+  OBJECT_FILE_DIR = CMakeFiles\PROJET.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target PROJET
@@ -69,7 +75,7 @@ build CMakeFiles/PROJET.dir/projet.c.obj: C_COMPILER__PROJET_Debug C$:/Users/eno
 #############################################
 # Link the executable PROJET.exe
 
-build PROJET.exe: C_EXECUTABLE_LINKER__PROJET_Debug CMakeFiles/PROJET.dir/main.c.obj CMakeFiles/PROJET.dir/projet.c.obj
+build PROJET.exe: C_EXECUTABLE_LINKER__PROJET_Debug CMakeFiles/PROJET.dir/main.c.obj CMakeFiles/PROJET.dir/projet.c.obj CMakeFiles/PROJET.dir/menu.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PROJET.dir
