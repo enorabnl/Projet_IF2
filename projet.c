@@ -72,22 +72,73 @@ int verif_lien_entre_lettres(int compteur,int dim_grille,char grille[][dim_grill
 
 
 int verif_mot_francais () {
-    FILE *fp = fopen("dico.txt", "r ");
+    FILE *fp1 = fopen("dico.txt", "r");
+    FILE *fp2 = fopen("mot_saisie.txt","a+");
     char mot[64];
     char test[64];
     char *succes = NULL;
-    if (fp != NULL) {
+
+
+
+    if (fp1 != NULL && fp2!=NULL){
+
         printf("tapez un mot\n");
         fgets(mot, 64, stdin);
-        mot[strlen(mot) - 1] = '\0';
+        mot[strlen(mot)-1]='\0';
         do {
-            succes = fgets(test, 64, fp);
-            test[strlen(test) - 1] = '\0';
+            succes = fgets(test, 64, fp1);
+            test[strlen(test)-1]='\0';
             if (strcmp(mot, test) == 0) {
-                printf("ok");
+                fprintf(fp2,"%s\n",mot);
+            }else{
+                printf("mot invalide");
             }
         } while (succes != NULL);
+
+
     }
 
-    fclose(fp);
+    fclose(fp1);
+    fclose(fp2);
+
 }
+
+
+
+void tri_score(int j ,utilisateur joueur[j]){
+    int permutation;
+    do{
+        permutation=0;
+        for(int i=0;i<j-1;i++){
+            if(joueur[j].score > joueur[i+1].score){
+                int tmp = joueur[i].score;
+                joueur[i].score=joueur[i+1].score;
+                joueur[i+1].score=tmp;
+                permutation=1;
+            }
+        }
+    }while(permutation == 1);
+}
+void affichage(int j,utilisateur joueur[j]){
+    for(int i=0;i<j;i++){
+        printf("%s: %f,",joueur[i].nom,joueur[i].score);
+        printf("\n");
+    }
+}
+
+void fin_de_partie(int j, utilisateur joueur[j]){
+    int j=1;
+    utilisateur joueur[j];
+    FILE *fp= fopen("sauvegarde.txt","a+");
+    if(fp!=NULL){
+
+        printf("tapez votre nom");
+        scanf("%s",&joueur[j].nom);
+        fprintf(fp,"nom:%s score:%d temps:%d dimension de la grille : %d\n",joueur[j].nom,joueur[j].score,joueur[j].temps,joueur[j].dimension_grille);
+        tri_score(j,joueur);
+        affichage(j,joueur);
+
+    }
+
+}
+

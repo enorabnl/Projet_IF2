@@ -17,9 +17,19 @@ typedef struct  {
     structure_position position;
 }structure_lettre;
 
+typedef struct {
+    char nom[20];
+    int score;
+    int temps;
+    int dimension_grille;
+}utilisateur;
+
 void recherche_premiere_lettre (int compteur,int dim_grille,char grille[][dim_grille],char mot[],structure_lettre position_prem_lettre[]);
 int verif_lien_entre_lettres(int compteur,int dim_grille,char grille[][dim_grille],char mot[],structure_lettre position_prem_lettre[]);
-
+void tri_score(int j ,utilisateur joueur[j]);
+void affichage(int j,utilisateur joueur[j]);
+int verif_mot_francais();
+void fin_de_partie(int j, utilisateur joueur[j]);
 
 
 
