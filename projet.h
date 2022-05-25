@@ -19,11 +19,8 @@ typedef struct  {
 
 void recherche_premiere_lettre (int compteur,int dim_grille,char grille[][dim_grille],char mot[],structure_lettre position_prem_lettre[]);
 int verif_lien_entre_lettres(int compteur,int dim_grille,char grille[][dim_grille],char mot[],structure_lettre position_prem_lettre[]);
-void remplissage_grille (int dim_grille,char grille[][dim_grille]);
-int unicite_lettre_3_3 (int dim_grille,int rang_x, int rang_y,char grille[][dim_grille]);
 
-char lettre_random ();
 
-void duree_partie(int duree);
+
 
 #endif //MAIN_C_PROJET_H

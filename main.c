@@ -1,5 +1,6 @@
 #include "projet.h"
 #include "menu.h"
+#include "creation_parties.h."
 
 #include <stdio.h>
 #include<string.h>
