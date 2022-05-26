@@ -127,7 +127,6 @@ void affichage(int j,utilisateur joueur[j]){
 }
 
 void fin_de_partie(int j, utilisateur joueur[j]){
-    int j=1;
     utilisateur joueur[j];
     FILE *fp= fopen("sauvegarde.txt","a+");
     if(fp!=NULL){
