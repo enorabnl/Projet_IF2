@@ -17,7 +17,7 @@ void duree_partie(int duree){
 
 
 char lettre_random() {
-    char lettre = 'a';
+    char lettre;
     int nb;
     srand(time(0));
 
@@ -51,17 +51,58 @@ char lettre_random() {
         case 99121 ... 99547 : lettre = 'X';break;
         case 99548 ... 99675 : lettre = 'Y';break;
         case 99676 ... 100001 : lettre = 'Z';break;
+        default: printf("erreur");
+    }
+    printf("%c",lettre);
+    return lettre;
+}
+
+
+// Parce que la fonction lettre random avec les proba prend trop de temps
+char lettre_random2() {
+
+    char lettre;
+    int nb;
+    srand(time(NULL));
+    nb = rand() % 26;
+
+    switch(nb){
+        case 0 : lettre = 'A'; break;
+        case 1 : lettre = 'B';break;
+        case 2 : lettre ='C';break;
+        case 3 : lettre = 'D';break;
+        case 4 : lettre = 'E';break;
+        case 5 : lettre = 'F';break;
+        case 6 : lettre = 'G';break;
+        case 7 : lettre = 'H';break;
+        case 8 : lettre = 'I';break;
+        case 9 : lettre = 'J';break;
+        case 10 : lettre = 'K';break;
+        case 11 : lettre = 'L';break;
+        case 12 : lettre = 'M';break;
+        case 13 : lettre = 'N';break;
+        case 14 : lettre = 'O';break;
+        case 15 : lettre = 'P';break;
+        case 16 : lettre = 'Q';break;
+        case 17 : lettre = 'R';break;
+        case 18 : lettre = 'S';break;
+        case 19 : lettre = 'T';break;
+        case 20 : lettre = 'U';break;
+        case 21 : lettre = 'V';break;
+        case 22 : lettre = 'W';break;
+        case 23 : lettre = 'X';break;
+        case 24 : lettre = 'Y';break;
+        case 25 : lettre = 'Z';break;
         default:
             printf("erreur");
     }
-    printf("%c",lettre);
     return lettre;
 }
 
 int unicite_lettre_3_3 (int dim_grille,int rang_x, int rang_y,char grille[][dim_grille]){
     int ok;
     for (int i=rang_x; i>rang_x -3; i--){
-        for(int j= rang_y;j>rang_y -3;j--){
+        for(int j= rang_y;j>rang_y -3 ;j--){
             if(grille[rang_x][rang_y]==grille[i][j] && (i!= rang_x || j!= rang_y)){
                 ok=1;
             }
@@ -73,13 +114,42 @@ int unicite_lettre_3_3 (int dim_grille,int rang_x, int rang_y,char grille[][dim_
         return 0;}
 }
 
-void remplissage_grille (int dim_grille,char grille[][dim_grille]){
+void remplissage_grille (int zone_x, int zone_y, int dim_grille,char grille[][dim_grille]){
     int ok;
-    for (int x=0;x<dim_grille;x++){
-        for(int y=0;y<dim_grille;y++){
-            do{grille[x][y]=lettre_random();
-                ok = unicite_lettre_3_3(dim_grille,x,y,grille);
-            } while (ok==1);
+    for (int x=zone_x;x<zone_x+3;x++){
+        for(int y=zone_y;y<zone_y+3;y++){
+            if (grille[x][y]==' '){
+                do{grille[x][y]=lettre_random();
+                    ok = unicite_lettre_3_3(dim_grille,x,y,grille);
+                } while (ok==1);
+                printf("%c",grille[x][y]);
+            }
+        }
+    }
+}
+
+
+void deplacement_zone_3_3 (int dim_grille,char grille[][dim_grille]){
+    for (int zone_x=0;zone_x<dim_grille-2;zone_x++){
+        for (int zone_y=0;zone_y<dim_grille-2;zone_y++){
+            remplissage_grille(zone_x,zone_y,dim_grille,grille);
+        }
+    }
+}
+
+void affichage_grille (int dimension_grille, char grille[][dimension_grille]){
+    for(int i=0 ; i<dimension_grille ; i++){
+        for(int j=0 ; j<dimension_grille ; j++){
+            printf(" %c |",grille[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void reset_grille (int dim_grille, char grille[][dim_grille]){
+    for (int x=0; x<dim_grille;x++){
+        for (int y=0;y<dim_grille;y++){
+            grille[x][y]=' ';
         }
     }
 }
