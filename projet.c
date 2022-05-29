@@ -8,13 +8,6 @@
 #include<time.h>
 
 
-// PARAMETRES ET CREATION DES PARTIES
-
-
-
-
-
-
 // DEROULEMENT DE LA PARTIE
 
 /* Cette fonction compare la première lettre du mot entré (ex : E) avec toutes les lettres de la grille
