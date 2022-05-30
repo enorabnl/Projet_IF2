@@ -5,8 +5,10 @@
 #include <stdio.h>
 #include<string.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main() {
+    srand(time(0));
 
     int choix_menu_principal, choix_menu_scores;
     int dimension_grille;

@@ -18,8 +18,8 @@ void duree_partie(int duree){
 
 char lettre_random() {
     char lettre;
-    int nb;
-    srand(time(0));
+    int long nb;
+
 
     nb = rand() % 100001;
     printf("%d", nb);
