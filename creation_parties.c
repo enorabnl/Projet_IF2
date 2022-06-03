@@ -3,6 +3,7 @@
 //
 
 #include "creation_parties.h"
+#include "projet.h"
 #include<stdio.h>
 #include<string.h>
 #include <stdlib.h>
@@ -19,7 +20,6 @@ void duree_partie(int duree){
 char lettre_random() {
     char lettre;
     int long nb;
-
 
     nb = rand() % 100001;
     printf("%d", nb);
@@ -63,7 +63,6 @@ char lettre_random2() {
 
     char lettre;
     int nb;
-    srand(time(NULL));
     nb = rand() % 26;
 
     switch(nb){
@@ -99,35 +98,45 @@ char lettre_random2() {
     return lettre;
 }
 
-int unicite_lettre_3_3 (int dim_grille,int rang_x, int rang_y,char grille[][dim_grille]){
-    int ok;
-    for (int i=rang_x; i>rang_x -3; i--){
-        for(int j= rang_y;j>rang_y -3 ;j--){
-            if(grille[rang_x][rang_y]==grille[i][j] && (i!= rang_x || j!= rang_y)){
-                ok=1;
-            }
+int unicite_lettre_3_3 (int dim_grille,int zone_x, int zone_y,char grille[][dim_grille], char lettre_ref){
+    int ok =0;
+    int i=zone_x;
+    int j=zone_y;
+
+
+    do{
+        if(grille[i][j]==lettre_ref){
+            ok=1;
         }
-    }
-    if (ok==1){
-        return ok;
-    }else{
-        return 0;}
+
+        if(j>=(zone_y+2)){
+            j=zone_y;
+            i++;
+        } else{
+            j++;
+        }
+
+    } while (i<(zone_x+3)&&ok!=1);
+
+    return ok;
 }
 
+
 void remplissage_grille (int zone_x, int zone_y, int dim_grille,char grille[][dim_grille]){
-    int ok;
+    char lettre_rand;
+    structure_lettre lettre_ref;
     for (int x=zone_x;x<zone_x+3;x++){
         for(int y=zone_y;y<zone_y+3;y++){
             if (grille[x][y]==' '){
-                do{grille[x][y]=lettre_random();
-                    ok = unicite_lettre_3_3(dim_grille,x,y,grille);
-                } while (ok==1);
-                printf("%c",grille[x][y]);
+                do{
+                    lettre_rand=lettre_random();
+                } while (unicite_lettre_3_3(dim_grille,zone_x,zone_y,grille, lettre_rand)==1);
+                grille[x][y]=lettre_rand;
+                printf("%c\n",lettre_rand);
             }
         }
     }
 }
-
 
 void deplacement_zone_3_3 (int dim_grille,char grille[][dim_grille]){
     for (int zone_x=0;zone_x<dim_grille-2;zone_x++){
@@ -136,6 +145,7 @@ void deplacement_zone_3_3 (int dim_grille,char grille[][dim_grille]){
         }
     }
 }
+
 
 void affichage_grille (int dimension_grille, char grille[][dimension_grille]){
     for(int i=0 ; i<dimension_grille ; i++){
